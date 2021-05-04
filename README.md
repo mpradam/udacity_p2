@@ -1,6 +1,12 @@
 # Disaster Response Pipeline Project
 
-### Summary of the project
+## Table of Contents
+* 1.Summary of the project
+* 2.How to run
+* 3.File Descriptions
+
+
+### 1. Summary of the project
 
 This project is part of the Udacity DataScience Nanodegree.
 
@@ -8,7 +14,7 @@ The main goal is analyze disaster data from Figure Eight to build a model for an
 
 The project includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app also shows visualizations of the data. 
 
-### How to Run
+### 2. How to Run
 
 1. Run the following commands in the project's root directory to set up your database and model.
 
@@ -23,58 +29,25 @@ The project includes a web app where an emergency worker can input a new message
 3. Go to http://0.0.0.0:3001/
 
 
-### Files in Repository
+### 3. File Descriptions
 
-* **data** Contains two .csv files and a process.py that when called from terminal creates a sqlite database with some minor data prep
-* * **disaster_messages** Contains the id, message that was sent and genre i.e the method (direct, tweet..) the message was sent
-* * **disaster_categories** Contains the id and the categories (related, offer, medical assistance..) the message belonged to.
-* **process_data.py** ETL that reads, merge and clean the data.
-* **ETL Pipeline Preparation.ipynb** jupiter notebook with the process.
-* **DisasterResponse.db** sqlite database to store de cleaned data.
+* **app** Cointains the flask app code and q "tun.py" file where the visualizations where built.
 
-### Instructions:
+* **data** Contains two .csv files and a python file
+    * **disaster_messages.csv** Dataset containing the text of the messages.
+    * **disaster_categories.csv** Data set containing lables of the text messages.
+    * **process_data.py** Python file trat does some minor data prep and creates a sqlite database
 
+* **models** Contains a python file that has the following steps
+    * **Data load** Loads the data from the previously created sqlite database
+    * **Pipeline** Creates a pipeline with a costume built tokenizer, TDIDF and a Multiclass clasifires
+    * **Train** Trains the model on a gridsearch and selects the best performer
+    * **Validate** Validates accuracy, precision, recall and f1_score.
+    * **Export** Export the model as a Pickle.
 
-
-
-
-The README file includes a summary of the project, how to run the Python scripts and web app, and an explanation of the files in the repository
-
-
-
-## Table of Contents
-* 1.Installation
-* 2.Project Motivation
-* 3.File Descriptions
-* 4.Licensing, Authors, and Acknowledgements
-## 1.Installation
-Developed under Python 3.6
-Anaconda distribution distribution for Python
-* Pandas, Numpy, Scikit-learn, NLP libraries from nltk, Pickle, sqlalchemy
-
-## 2.Project Motivation
-T
-## 3.File Descriptions
-
-**data** 
-contains the twuo .csv files and a process.py which can be called from a terminal "python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db". The data folder contains the following files:
-* **disaster_messages** Contains the id, message that was sent and genre i.e the method (direct, tweet..) the message was sent
-* **disaster_categories** Contains the id and the categories (related, offer, medical assistance..) the message belonged to.
-* **process_data.py** ETL that reads, merge and clean the data.
-* **ETL Pipeline Preparation.ipynb** jupiter notebook with the process.
-* **DisasterResponse.db** sqlite database to store de cleaned data.
-
-**models**
-contains train_classifier.py which can be called from terminal  "python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl" . The models folder contains the following files:
-* **process_data.py** pipeline that trains the NLP model and _creates the **classifier.pkl** in the model folder (because of its size it can't be uploaded)._
-* **ETL Pipeline Preparation.ipynb** jupiter notebook with the process.
-
-**app**
-contains **run.py** used to deploy the flask app. It can be called from a terminal by running the following command in the **app's directory** "python run.py" (before running make sure to be in the app directory use **cd app** in the terminal.
-
-when the app is running Go to http://0.0.0.0:3001/
+* **notebooks**
+    * **ETL Pipeline Preparation.ipynb** jupiter notebook with the etl procces.
+    * **ML Pipeline Preparation.ipynb** jupiter notebook with the ml procces.
+    
 
 
-## 4 Licensing, Authors, Acknowledgements
-
-Must give credit to Udacity and its partners for the data. You can find the Licensing for the data https://www.udacity.com/course/data-scientist-nanodegree--nd025.
