@@ -10,6 +10,7 @@ from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
+from nltk.corpus import stopwords
 
 
 app = Flask(__name__)
@@ -39,12 +40,16 @@ model = joblib.load("../models/classifier.pkl")
 def index():
     
     # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    #top words
+    words = pd.Series(' '.join(df['message']).lower().split())
+    top_words = words[~words.isin(stopwords.words("english"))].value_counts()[:5]
+    top_words_names = list(top_words.index)
+
+
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
@@ -63,7 +68,29 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+
+        {
+            'data': [
+                Bar(
+                    x=top_words_names,
+                    y=top_words,
+                    marker = dict(color='red')
+                )
+            ],
+
+            'layout': {
+                'title': 'Top 5 Words',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Words"
+                }
+            }
         }
+
+
     ]
     
     # encode plotly graphs in JSON
