@@ -75,7 +75,7 @@ def index():
                 Bar(
                     x=top_words_names,
                     y=top_words,
-                    marker = dict(color='red')
+                    marker = dict(color='black')
                 )
             ],
 

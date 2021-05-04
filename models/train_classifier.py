@@ -62,7 +62,6 @@ def tokenize(text):
     3. Tokenizes the text 
     4 Remove stop words
     5. Does lemmatization of the words
-    6. Does stemmization of the words
     
     Input:
     
@@ -83,8 +82,6 @@ def tokenize(text):
     words = [w for w in words if w not in stopwords.words("english")]
     #Lemmatizes
     words = [WordNetLemmatizer().lemmatize(w) for w in words]
-    #Stemmizes
-    words= [PorterStemmer().stem(w) for w in words]
 
     return words
 
@@ -113,7 +110,7 @@ def build_model():
         'clf__estimator__n_estimators': [5, 10, 15]}
 
     #Grid search object
-    cv = GridSearchCV(pipeline, param_grid=parameters)
+    cv = GridSearchCV(pipeline, param_grid=parameters, verbose=3)
     
     return cv 
 
