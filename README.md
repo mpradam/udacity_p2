@@ -1,9 +1,9 @@
 # Disaster Response Pipeline Project
 
 ## Table of Contents
-* 1.Summary of the project
-* 2.How to run
-* 3.File Descriptions
+1. Summary of the project
+2. How to run
+3. File Descriptions
 
 
 ### 1. Summary of the project
